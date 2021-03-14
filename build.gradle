@@ -1,0 +1,72 @@
+buildscript {
+    ext {
+        lombokVersion = '1.18.18'
+        logbackVersion = '1.2.3'
+    }
+}
+
+plugins {
+    id 'groovy'
+    id 'java'
+}
+
+group 'com.petclinic'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+
+    implementation 'org.codehaus.groovy:groovy-all:2.5.14'
+    implementation 'io.rest-assured:rest-assured:3.3.0'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.1'
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+
+    testImplementation 'org.spockframework:spock-core:1.3-groovy-2.5', {
+        exclude module: 'groovy-all'
+    }
+}
+
+Map<String, String> ENVIRONMENT_TO_DEFAULT_TEST_GROUPS_MAP = [
+        'regression_tests': 'regression',
+        'smoke_tests'     : 'smoke'
+]
+
+test {
+    testLogging.showStandardStreams = true
+    systemProperties System.properties
+
+    doFirst {
+        def DEFAULT_ENVIRONMENT = 'regression_tests'
+        def ENVIRONMENT_PROPERTY_NAME = 'env'
+        def TEST_GROUPS_PROPERTY_NAME = 'testGroups'
+
+        def chosenEnvironment = System.getProperty(ENVIRONMENT_PROPERTY_NAME) ?: DEFAULT_ENVIRONMENT
+        if (!ENVIRONMENT_TO_DEFAULT_TEST_GROUPS_MAP.containsKey(chosenEnvironment)) {
+            throw new InvalidUserDataException(
+                    "Invalid environment: $chosenEnvironment. Supported environments: ${ENVIRONMENT_TO_DEFAULT_TEST_GROUPS_MAP.keySet()}" as String
+            )
+        }
+
+        println "Chosen test environment: '$chosenEnvironment'"
+        systemProperty ENVIRONMENT_PROPERTY_NAME, chosenEnvironment
+
+        def chosenTestGroups = System.getProperty(TEST_GROUPS_PROPERTY_NAME) ?: ENVIRONMENT_TO_DEFAULT_TEST_GROUPS_MAP[chosenEnvironment]
+        println "Chosen test groups: '$chosenTestGroups'"
+        systemProperty TEST_GROUPS_PROPERTY_NAME, chosenTestGroups
+
+        TestGroups testGroupsResolver = new TestGroups(chosenTestGroups)
+
+        useJUnit {
+            includeCategories testGroupsResolver.includedGroups()
+            excludeCategories testGroupsResolver.excludedGroups()
+        }
+    }
+}

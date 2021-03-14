@@ -1,9 +1,10 @@
-package com.petclinic.spec
+package com.petclinic.spec.basic
 
 import com.petclinic.common.testgroups.Regression
 import com.petclinic.common.testgroups.Smoke
 import com.petclinic.dto.Pet
 import com.petclinic.services.PetService
+import com.petclinic.spec.BaseSpec
 import org.junit.experimental.categories.Category
 
 import static com.petclinic.databuilders.PetCreator.samplePetRequest

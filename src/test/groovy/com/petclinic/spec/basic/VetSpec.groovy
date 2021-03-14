@@ -1,10 +1,11 @@
-package com.petclinic.spec
+package com.petclinic.spec.basic
 
 import com.petclinic.common.testgroups.Regression
 import com.petclinic.common.testgroups.Smoke
 import com.petclinic.dto.Vet
 
 import com.petclinic.services.VetService
+import com.petclinic.spec.BaseSpec
 import org.junit.experimental.categories.Category
 import spock.lang.Unroll
 

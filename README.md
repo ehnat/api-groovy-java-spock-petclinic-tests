@@ -7,5 +7,8 @@
 - `cd spring-petclinic-rest`
 - `./mvnw spring-boot:run`
 
-Documentation:
+# Documentation:
 `http://localhost:9966/petclinic/swagger-ui.html`
+
+# Postman collection:
+In folder `postman` there is postman collection used during creating tests

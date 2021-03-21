@@ -21,3 +21,6 @@ In folder `postman` there is postman collection used during creating tests
 ### Repeating failed tests:
 - failure tests are repeated (`spock-retry` dependency, set by annotation `@RetryOnFailure`)
 - `spock-retry` dependency repo: https://mvnrepository.com/artifact/com.anotherchrisberry/spock-retry
+
+Useful:
+- example of `Groovy Object Creation with Tap Method` in class `VisitCreator.groovy`: https://blog.mrhaki.com/2018/06/groovy-goodness-easy-object-creation.html

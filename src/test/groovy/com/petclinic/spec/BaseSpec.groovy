@@ -1,8 +1,8 @@
 package com.petclinic.spec
 
-import groovy.transform.CompileStatic
+import com.anotherchrisberry.spock.extensions.retry.*
 import spock.lang.Specification
 
-@CompileStatic
+@RetryOnFailure(times = 1, delaySeconds = 5)
 class BaseSpec extends Specification {
 }

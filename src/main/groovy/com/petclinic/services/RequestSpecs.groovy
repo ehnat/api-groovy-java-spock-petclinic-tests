@@ -10,6 +10,7 @@ import io.restassured.http.ContentType
 import io.restassured.specification.RequestSpecification
 import org.apache.http.params.CoreConnectionPNames
 
+import static com.petclinic.config.TestConfig.envConfig
 import static io.restassured.config.HttpClientConfig.httpClientConfig
 import static io.restassured.config.RestAssuredConfig.newConfig
 import static org.apache.http.params.CoreConnectionPNames.SO_TIMEOUT
@@ -31,7 +32,7 @@ class RequestSpecs {
 
     static RequestSpecification basicSpec(String accept = APPLICATION_JSON) {
         new RequestSpecBuilder()
-                .setBaseUri('http://localhost:9966/petclinic/api')
+                .setBaseUri(envConfig.baseUrl())
                 .setConfig(newConfig().httpClient(HTTP_CLIENT_CONFIG))
                 .addFilters(LOGGING_FILTERS)
                 .setAccept(accept)

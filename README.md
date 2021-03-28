@@ -16,6 +16,13 @@ B. advanced, longer test:
 
 6) a new visit is scheduled for a new owner and his pet
 
+### Technical description
+
+- Used technologies: Groovy, Java 8, Gradle
+- Used frameworks/libraries: RestAssured, Spock, AssertJ
+- Test reports: Gradle, Spock
+
+
 ### How to run application under test:
 
 Running the application under test is the entry point for tests.

@@ -36,13 +36,14 @@ dependencies {
     }
     testImplementation 'com.athaydes:spock-reports:1.8.0'
     testImplementation 'com.anotherchrisberry:spock-retry:0.6.5'
+    testImplementation 'org.assertj:assertj-core:3.19.0'
     testCompile "ch.qos.logback:logback-core:$logbackVersion"
     testCompile "ch.qos.logback:logback-classic:$logbackVersion"
 }
 
 Map<String, String> ENVIRONMENT_TO_DEFAULT_TEST_GROUPS_MAP = [
-        'env-regression': 'regression',
-        'env-smoke'     : 'smoke'
+        'default-regression': 'regression',
+        'default-smoke'     : 'smoke'
 ]
 
 test {
@@ -50,22 +51,23 @@ test {
     systemProperties System.properties
 
     doFirst {
-        def DEFAULT_ENVIRONMENT = 'env-regression'
+        def DEFAULT_ENVIRONMENT_TEST_GROUPS = 'default-regression'
         def ENVIRONMENT_PROPERTY_NAME = 'env'
         def TEST_GROUPS_PROPERTY_NAME = 'testGroups'
 
-        def chosenEnvironment = System.getProperty(ENVIRONMENT_PROPERTY_NAME) ?: DEFAULT_ENVIRONMENT
-        if (!ENVIRONMENT_TO_DEFAULT_TEST_GROUPS_MAP.containsKey(chosenEnvironment)) {
+        def chosenEnvironmentAndTestGroups = System.getProperty(ENVIRONMENT_PROPERTY_NAME) ?: DEFAULT_ENVIRONMENT_TEST_GROUPS
+
+        if (!ENVIRONMENT_TO_DEFAULT_TEST_GROUPS_MAP.containsKey(chosenEnvironmentAndTestGroups)) {
             throw new InvalidUserDataException(
-                    "Invalid environment: $chosenEnvironment. Supported environments: ${ENVIRONMENT_TO_DEFAULT_TEST_GROUPS_MAP.keySet()}" as String
+                    "Invalid configuration (environment - tests category): $chosenEnvironmentAndTestGroups. Supported Configurations: ${ENVIRONMENT_TO_DEFAULT_TEST_GROUPS_MAP.keySet()}" as String
             )
         }
 
-        println "Chosen test environment: '$chosenEnvironment'"
-        systemProperty ENVIRONMENT_PROPERTY_NAME, chosenEnvironment
+        println "Chosen test configuration (environment - tests category): '$chosenEnvironmentAndTestGroups'"
+        systemProperty ENVIRONMENT_PROPERTY_NAME, chosenEnvironmentAndTestGroups
 
-        def chosenTestGroups = System.getProperty(TEST_GROUPS_PROPERTY_NAME) ?: ENVIRONMENT_TO_DEFAULT_TEST_GROUPS_MAP[chosenEnvironment]
-        println "Chosen test groups: '$chosenTestGroups'"
+        def chosenTestGroups = System.getProperty(TEST_GROUPS_PROPERTY_NAME) ?: ENVIRONMENT_TO_DEFAULT_TEST_GROUPS_MAP[chosenEnvironmentAndTestGroups]
+        println "Chosen tests categories: '$chosenTestGroups'"
         systemProperty TEST_GROUPS_PROPERTY_NAME, chosenTestGroups
 
         TestGroups testGroupsResolver = new TestGroups(chosenTestGroups)

@@ -3,11 +3,12 @@ package com.petclinic.spec.basic
 import com.petclinic.common.testgroups.Regression
 import com.petclinic.common.testgroups.Smoke
 import com.petclinic.dto.Vet
-
 import com.petclinic.services.VetService
 import com.petclinic.spec.BaseSpec
 import org.junit.experimental.categories.Category
 import spock.lang.Unroll
+
+import static com.petclinic.assertions.Assertions.assertThat
 
 @Category([Smoke, Regression])
 class VetSpec extends BaseSpec {
@@ -26,8 +27,9 @@ class VetSpec extends BaseSpec {
         Vet returnedVet = VetService.getVet(vetId as int)
 
         then: 'data for vet is returned'
-        returnedVet.id == vetId
-        returnedVet.firstName == expectedFirstName
+        assertThat(returnedVet)
+                .hasId(vetId)
+                .hasFirstName(expectedFirstName)
 
         where:
         vetId || expectedFirstName

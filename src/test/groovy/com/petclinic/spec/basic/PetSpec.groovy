@@ -7,6 +7,7 @@ import com.petclinic.services.PetService
 import com.petclinic.spec.BaseSpec
 import org.junit.experimental.categories.Category
 
+import static com.petclinic.assertions.Assertions.assertThat
 import static com.petclinic.databuilders.PetCreator.samplePetRequest
 
 @Category(Regression)
@@ -30,8 +31,9 @@ class PetSpec extends BaseSpec {
         Pet addedPet = PetService.addPet(petRequest)
 
         then: 'pet is created'
-        addedPet.name == petRequest.name
-        addedPet.owner.id == petRequest.owner.id
+        assertThat(addedPet)
+                .hasName(petRequest.name)
+                .hasOwnerId(petRequest.owner.id)
 
         and: 'pets amount increases'
         int actualPetsAmount = PetService.getAllPets().size()

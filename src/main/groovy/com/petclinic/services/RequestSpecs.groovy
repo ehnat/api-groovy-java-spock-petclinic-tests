@@ -19,7 +19,7 @@ import static org.apache.http.params.CoreConnectionPNames.CONNECTION_TIMEOUT
 @CompileStatic
 class RequestSpecs {
 
-    private static final String APPLICATION_JSON = 'application/json'
+    private static final String APPLICATION_JSON = ContentType.JSON
     private static final int DEFAULT_CONNECTION_TIMEOUT_IN_MILLIS = 10_000
     private static final int DEFAULT_SOCKET_TIMEOUT_IN_MILLIS = 10_000
 

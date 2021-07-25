@@ -1,6 +1,5 @@
 package com.petclinic.services
 
-
 import com.petclinic.dto.Visit
 import groovy.transform.CompileStatic
 
@@ -11,15 +10,15 @@ import static org.apache.http.HttpStatus.SC_OK
 @CompileStatic
 class VisitService {
 
-    static Visit[] getAllVisits() {
+    static List<Visit> getAllVisits() {
         //@formatter:off
-        given()
+        Arrays.asList(given()
                 .spec(RequestSpecs.basicSpec())
         .when()
                 .get(Paths.VISITS)
         .then()
                 .statusCode(SC_OK)
-                .extract().as(Visit[].class)
+                .extract().as(Visit[].class))
         //@formatter:on
     }
 

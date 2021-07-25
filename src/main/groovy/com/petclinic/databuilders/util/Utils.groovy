@@ -8,9 +8,9 @@ import java.time.format.DateTimeFormatter
 @CompileStatic
 class Utils {
 
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern('yyyy/MM/dd')
 
-    static String getTodayDate(){
+    static String getTodayDate() {
         LocalDate.now().format(DATE_FORMATTER)
     }
 }

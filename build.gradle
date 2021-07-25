@@ -8,6 +8,7 @@ buildscript {
 plugins {
     id 'groovy'
     id 'java'
+    id 'codenarc'
 }
 
 group 'com.petclinic'
@@ -77,4 +78,17 @@ test {
             excludeCategories testGroupsResolver.excludedGroups()
         }
     }
+}
+
+codenarc {
+    toolVersion = '2.1.0'
+    reportFormat = 'html'
+}
+
+codenarcMain {
+    configFile file('config/codenarc/codenarc.groovy')
+}
+
+codenarcTest {
+    configFile file('config/codenarc/codenarcTest.groovy')
 }

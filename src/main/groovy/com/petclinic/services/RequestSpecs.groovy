@@ -8,7 +8,6 @@ import io.restassured.filter.log.RequestLoggingFilter
 import io.restassured.filter.log.ResponseLoggingFilter
 import io.restassured.http.ContentType
 import io.restassured.specification.RequestSpecification
-import org.apache.http.params.CoreConnectionPNames
 
 import static com.petclinic.config.TestConfig.envConfig
 import static io.restassured.config.HttpClientConfig.httpClientConfig

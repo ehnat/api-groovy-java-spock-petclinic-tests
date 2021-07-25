@@ -95,3 +95,14 @@ b) example of using `Custom Assertions` from AssertJ:
 - documentation:
   `https://assertj.github.io/doc/#assertj-core-custom-assertions`,
   `https://joel-costigliola.github.io/assertj/assertj-core-custom-assertions.html`
+
+### Static code analysis with codenarc
+To have the same rules while adding code the static analysis tool for Groovy (Codenarc https://codenarc.org/) was
+added to the project (integrated via Gradle plugin).
+The files with rules are defined in `config/codenarc` dir at the project root.
+
+To run static analysis for the whole project the following command needs to be invoked:
+- mac: `./gradlew codenarcMain codenarcTest --info --continue`
+- windows: `gradlew.bat codenarcMain codenarcTest --info --continue`
+
+Reports what needs to be fixed is available in html report generated at the end here: `build/reports/codenarc`

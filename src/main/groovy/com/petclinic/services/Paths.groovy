@@ -4,6 +4,7 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 class Paths {
+
     public static final String VETS = '/vets'
     public static final String VET = "$VETS/{vetId}"
     public static final String PETS = '/pets'

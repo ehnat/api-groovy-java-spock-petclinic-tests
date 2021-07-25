@@ -10,15 +10,15 @@ import static org.apache.http.HttpStatus.SC_OK
 @CompileStatic
 class OwnerService {
 
-    static Owner[] getAllOwners() {
+    static List<Owner> getAllOwners() {
         //@formatter:off
-        given()
+        Arrays.asList(given()
                 .spec(RequestSpecs.basicSpec())
         .when()
                 .get(Paths.OWNERS)
         .then()
                 .statusCode(SC_OK)
-                .extract().as(Owner[].class)
+                .extract().as(Owner[].class))
         //@formatter:on
     }
 

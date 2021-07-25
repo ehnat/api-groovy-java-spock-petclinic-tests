@@ -10,15 +10,15 @@ import static org.apache.http.HttpStatus.SC_OK
 @CompileStatic
 class VetService {
 
-    static Vet[] getAllVets() {
+    static List<Vet> getAllVets() {
         //@formatter:off
-        given()
+        Arrays.asList(given()
                 .spec(RequestSpecs.basicSpec())
         .when()
                 .get(Paths.VETS)
         .then()
                 .statusCode(SC_OK)
-                .extract().as(Vet[].class)
+                .extract().as(Vet[].class))
         //@formatter:on
     }
 

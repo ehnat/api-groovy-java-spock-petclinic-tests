@@ -10,6 +10,7 @@ import static org.apache.http.HttpStatus.SC_OK
 
 @CompileStatic
 class PetService {
+
     static PetType getPetType(int petTypeId) {
         //@formatter:off
         given()
@@ -23,15 +24,15 @@ class PetService {
         //@formatter:on
     }
 
-    static Pet[] getAllPets() {
+    static List<Pet> getAllPets() {
         //@formatter:off
-        given()
+        Arrays.asList(given()
                 .spec(RequestSpecs.basicSpec())
         .when()
                 .get(Paths.PETS)
         .then()
                 .statusCode(SC_OK)
-                .extract().as(Pet[].class)
+                .extract().as(Pet[].class))
         //@formatter:on
     }
 

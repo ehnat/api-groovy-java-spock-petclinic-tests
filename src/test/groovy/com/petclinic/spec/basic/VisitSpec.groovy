@@ -5,15 +5,14 @@ import com.petclinic.common.testgroups.Smoke
 import com.petclinic.dto.Visit
 import com.petclinic.services.VisitService
 import com.petclinic.spec.BaseSpec
-import org.junit.experimental.categories.Category
 import spock.lang.Unroll
 
 import static com.petclinic.databuilders.VisitCreator.sampleVisitRequest
 
-@Category(Regression)
+@Regression
 class VisitSpec extends BaseSpec {
 
-    @Category(Smoke)
+    @Smoke
     def 'should return all visits'() {
         when: 'request for getting all visits is sent'
         Visit[] allVisits = VisitService.getAllVisits()
@@ -23,7 +22,7 @@ class VisitSpec extends BaseSpec {
     }
 
     @Unroll
-    @Category(Smoke)
+    @Smoke
     def 'should return visit=#visitId'() {
         when: 'request for getting visit=#visitId is sent'
         Visit returnedVisit = VisitService.getVisit(visitId as int)

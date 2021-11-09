@@ -1,8 +1,6 @@
+import java.util.stream.Collectors
+
 class TestGroups {
-    private static final groupDefinitions = [
-            "regression": "com.petclinic.common.testgroups.Regression",
-            "smoke"     : "com.petclinic.common.testgroups.Smoke"
-    ]
 
     private final Collection<String> groupsParam
 
@@ -13,18 +11,18 @@ class TestGroups {
                 .findAll { !it.isAllWhitespace() }
     }
 
-    String[] excludedGroups() {
+    String excluded() {
         resolveGroups(excludes())
     }
 
-    String[] includedGroups() {
+    String included() {
         resolveGroups(includes())
     }
 
-    private String[] resolveGroups(Collection<String> groups) {
+    private static String resolveGroups(Collection<String> groups) {
         groups
-                .collect { groupDefinitions[it] }
-                .toArray(new String[groups.size()])
+                .stream()
+                .collect(Collectors.joining(","))
     }
 
     private Collection<String> includes() {
@@ -37,7 +35,7 @@ class TestGroups {
                 .collect { it.replaceFirst("-", "") }
     }
 
-    private boolean isExcluded(String group) {
+    private static boolean isExcluded(String group) {
         group.startsWith("-")
     }
 }

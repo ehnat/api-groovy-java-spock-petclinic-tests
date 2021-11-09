@@ -8,7 +8,6 @@ import com.petclinic.services.OwnerService
 import com.petclinic.services.PetService
 import com.petclinic.services.VisitService
 import com.petclinic.spec.BaseSpec
-import org.junit.experimental.categories.Category
 
 import static com.petclinic.databuilders.OwnerCreator.sampleOwnerRequest
 import static com.petclinic.databuilders.PetCreator.samplePetRequest
@@ -16,7 +15,7 @@ import static com.petclinic.databuilders.VisitCreator.sampleVisitRequest
 import static com.petclinic.services.PetService.getPetType
 import static com.petclinic.services.VisitService.allVisits
 
-@Category(Regression)
+@Regression
 class AddPetVisitSpec extends BaseSpec {
     private static final int INITIAL_VISITS_AMOUNT = getAllVisits().size()
 

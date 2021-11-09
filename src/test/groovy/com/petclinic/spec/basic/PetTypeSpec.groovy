@@ -5,14 +5,13 @@ import com.petclinic.common.testgroups.Smoke
 import com.petclinic.dto.PetType
 import com.petclinic.services.PetService
 import com.petclinic.spec.BaseSpec
-import org.junit.experimental.categories.Category
 import spock.lang.Unroll
 
-@Category(Regression)
+@Regression
 class PetTypeSpec extends BaseSpec {
 
     @Unroll
-    @Category(Smoke)
+    @Smoke
     def 'should return pet type = #expectedPetTypeName'() {
         when: 'request for getting pet type is sent'
         PetType petType = PetService.getPetType(petTypeId)

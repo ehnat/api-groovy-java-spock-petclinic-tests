@@ -5,15 +5,14 @@ import com.petclinic.common.testgroups.Smoke
 import com.petclinic.dto.Owner
 import com.petclinic.services.OwnerService
 import com.petclinic.spec.BaseSpec
-import org.junit.experimental.categories.Category
 import spock.lang.Unroll
 
 import static com.petclinic.databuilders.OwnerCreator.sampleOwnerRequest
 
-@Category(Regression)
+@Regression
 class OwnerSpec extends BaseSpec {
 
-    @Category(Smoke)
+    @Smoke
     def 'should return all owners'() {
         when: 'request for getting all owners is sent'
         Owner[] allOwners = OwnerService.getAllOwners()
@@ -23,7 +22,7 @@ class OwnerSpec extends BaseSpec {
     }
 
     @Unroll
-    @Category(Smoke)
+    @Smoke
     def 'should return owner=#ownerId'() {
         when: 'request for getting owner=#ownerId is sent'
         Owner owner = OwnerService.getOwner(ownerId)

@@ -5,15 +5,14 @@ import com.petclinic.common.testgroups.Smoke
 import com.petclinic.dto.Pet
 import com.petclinic.services.PetService
 import com.petclinic.spec.BaseSpec
-import org.junit.experimental.categories.Category
 
 import static com.petclinic.assertions.Assertions.assertThat
 import static com.petclinic.databuilders.PetCreator.samplePetRequest
 
-@Category(Regression)
+@Regression
 class PetSpec extends BaseSpec {
 
-    @Category(Smoke)
+    @Smoke
     def 'should return all pets'() {
         when: 'request for getting all pets is sent'
         Pet[] allPets = PetService.getAllPets()

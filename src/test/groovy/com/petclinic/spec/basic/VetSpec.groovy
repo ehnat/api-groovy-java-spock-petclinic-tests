@@ -5,12 +5,12 @@ import com.petclinic.common.testgroups.Smoke
 import com.petclinic.dto.Vet
 import com.petclinic.services.VetService
 import com.petclinic.spec.BaseSpec
-import org.junit.experimental.categories.Category
 import spock.lang.Unroll
 
 import static com.petclinic.assertions.Assertions.assertThat
 
-@Category([Smoke, Regression])
+@Smoke
+@Regression
 class VetSpec extends BaseSpec {
 
     def 'should return all vets'() {

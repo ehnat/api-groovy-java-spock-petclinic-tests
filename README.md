@@ -19,7 +19,7 @@ B. advanced, longer test:
 ### Technical description
 
 - Used technologies: Groovy 2.5, Java 8, Gradle
-- Used frameworks/libraries: RestAssured, Spock 1.3, AssertJ
+- Used frameworks/libraries: RestAssured, Spock 2.0, AssertJ
 - Test reports: Gradle, Spock
 
 

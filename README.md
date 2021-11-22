@@ -76,6 +76,8 @@ C. default test configuration
 
 ### How to run tests
 
+Tests are run with using `System properties` (property is called with `-D`)
+
 1) mac
    `./gradlew clean test -Denv=ENVIRONMENT -DtestGroups=TEST_GROUPS --info --continue`
 

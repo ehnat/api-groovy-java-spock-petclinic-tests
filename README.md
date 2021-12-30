@@ -97,6 +97,10 @@ b) example of using `Custom Assertions` from AssertJ:
   `https://assertj.github.io/doc/#assertj-core-custom-assertions`,
   `https://joel-costigliola.github.io/assertj/assertj-core-custom-assertions.html`
 
+c) example of using logging in tests:
+
+- used in: `OwnerSpec.groovy`, `PetSpec.groovy`
+
 ### Static code analysis with codenarc
 
 To have the same rules while adding code the static analysis tool for Groovy (Codenarc https://codenarc.org/) was added

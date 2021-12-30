@@ -5,6 +5,8 @@ import com.petclinic.common.testgroups.Smoke
 import com.petclinic.dto.Owner
 import com.petclinic.services.OwnerService
 import com.petclinic.spec.BaseSpec
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import spock.lang.Unroll
 
 import static com.petclinic.databuilders.OwnerCreator.sampleOwnerRequest
@@ -12,9 +14,12 @@ import static com.petclinic.databuilders.OwnerCreator.sampleOwnerRequest
 @Regression
 class OwnerSpec extends BaseSpec {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(OwnerSpec)
+
     @Smoke
     def 'should return all owners'() {
         when: 'request for getting all owners is sent'
+        LOGGER.info("send request for get all owners")
         Owner[] allOwners = OwnerService.getAllOwners()
 
         then: 'all owners are returned'

@@ -5,16 +5,19 @@ import com.petclinic.common.testgroups.Smoke
 import com.petclinic.dto.Pet
 import com.petclinic.services.PetService
 import com.petclinic.spec.BaseSpec
+import groovy.util.logging.Slf4j
 
 import static com.petclinic.assertions.Assertions.assertThat
 import static com.petclinic.databuilders.PetCreator.samplePetRequest
 
+@Slf4j //for java use lombok annotation
 @Regression
 class PetSpec extends BaseSpec {
 
     @Smoke
     def 'should return all pets'() {
         when: 'request for getting all pets is sent'
+        log.info("send request for get all pets")
         Pet[] allPets = PetService.getAllPets()
 
         then: 'all pets are returned'

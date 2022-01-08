@@ -114,7 +114,14 @@ To run static analysis for the whole project the following command needs to be i
 
 Reports what needs to be fixed is available in html report generated at the end here: `build/reports/codenarc`
 
+### Use external library:
+The branch `petclinic_lib`: tests use external library (jar file in `libs` directory) for calling Petclinic API.
+Proper methods and dtos for Petclinic API are not created in this repository, but they are prepared 
+in my another repository [java-petclinic-lib](https://github.com/ehnat/java-petclinic-lib) and can be used
+in other places as external dependency
+
 ### Other branches:
 
 - `main` - tests using Spock 1.3
 - `spock_2_0` - the same tests which are in `main` branch using Spock 2.0
+- `petclinic_lib` - the same tests which are in `main` branch but with usage my external library for calling Petclinic API

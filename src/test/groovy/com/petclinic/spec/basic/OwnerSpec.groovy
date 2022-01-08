@@ -3,13 +3,13 @@ package com.petclinic.spec.basic
 import com.petclinic.common.testgroups.Regression
 import com.petclinic.common.testgroups.Smoke
 import com.petclinic.dto.Owner
-import com.petclinic.services.OwnerService
 import com.petclinic.spec.BaseSpec
 import org.junit.experimental.categories.Category
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import spock.lang.Unroll
 
+import static com.petclinic.common.OperatingOnPetclinicLibActions.ownerService
 import static com.petclinic.databuilders.OwnerCreator.sampleOwnerRequest
 
 @Category(Regression)
@@ -21,7 +21,7 @@ class OwnerSpec extends BaseSpec {
     def 'should return all owners'() {
         when: 'request for getting all owners is sent'
         LOGGER.info("send request for get all owners")
-        Owner[] allOwners = OwnerService.getAllOwners()
+        Owner[] allOwners = ownerService.getAllOwners()
 
         then: 'all owners are returned'
         allOwners.size() > 0
@@ -31,7 +31,7 @@ class OwnerSpec extends BaseSpec {
     @Category(Smoke)
     def 'should return owner=#ownerId'() {
         when: 'request for getting owner=#ownerId is sent'
-        Owner owner = OwnerService.getOwner(ownerId)
+        Owner owner = ownerService.getOwner(ownerId)
 
         then: 'data for owner is returned'
         owner.id == ownerId
@@ -50,7 +50,7 @@ class OwnerSpec extends BaseSpec {
         ])
 
         when: 'request for adding new owner is sent'
-        Owner addedOwner = OwnerService.addOwner(ownerRequest)
+        Owner addedOwner = ownerService.addOwner(ownerRequest)
 
         then: 'new owner is added'
         addedOwner.firstName == ownerRequest.firstName

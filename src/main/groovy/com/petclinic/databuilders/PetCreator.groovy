@@ -8,9 +8,9 @@ import com.petclinic.dto.PetType
 import com.petclinic.dto.VisitResponse
 import groovy.transform.CompileStatic
 
+import static com.petclinic.common.OperatingOnPetclinicLibActions.ownerService
+import static com.petclinic.common.OperatingOnPetclinicLibActions.petService
 import static com.petclinic.databuilders.util.PropertiesValidator.validatePropertyNames
-import static com.petclinic.services.OwnerService.getOwner
-import static com.petclinic.services.PetService.getPetType
 
 @CompileStatic
 class PetCreator {
@@ -21,8 +21,8 @@ class PetCreator {
             birthDate: Utils.todayDate,
             id       : 0,
             name     : FAKER.name().firstName(),
-            owner    : getOwner(1),
-            type     : getPetType(2),
+            owner    : ownerService.getOwner(1),
+            type     : petService.getPetType(2),
             visits   : []
     ]
 

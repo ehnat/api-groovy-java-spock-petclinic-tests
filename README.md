@@ -118,7 +118,7 @@ Reports what needs to be fixed is available in html report generated at the end 
 The branch `petclinic_lib`: tests use external library (jar file in `libs` directory) for calling Petclinic API.
 Proper methods and dtos for Petclinic API are not created in this repository, but they are prepared 
 in my another repository [java-petclinic-lib](https://github.com/ehnat/java-petclinic-lib) and can be used
-in other places as external dependency
+in other places as external dependency. Important class: `OperatingOnPetclinicLibActions.groovy`
 
 ### Other branches:
 
